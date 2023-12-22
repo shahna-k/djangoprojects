@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 20rem;margin-left:210px;">
+                <img src="{{p.image.url}}"height="350px"width="350px">
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card" style="width:30rem;">
+                <div class="card-body mt-4 mb-4">
+                    <h5 class="card-title">{{p.name}}</h5>
+                    <p class="card-text">{{p.desc}}</p>
+                    <p class="card-text">{{p.price}}</p>
+                    {{p.stock}}
+                    {% if user.is_superuser == False %}
+                    {% if p.stock <= 0 %}
+                    <h4>Out of Stock</h4>
+                    {% else %}
+                    <a href="{% url 'cart:addtocart' p.name %}" class="btn btn-primary">Add to cart</a>
+                    {% endif %}
+
+                    {% else %}
+                    {% if p.stock <= 0 %}
+                    <h4>Out of Stock</h4>
+                    <h4><a href="{% url 'admin:index' %}" class="btn btn-secondary">Add Stock</a></h4>
+
+                    {% else %}
+                    <h4>Product in Stock</h4>
+                    <h4><a href="{% url 'admin:index' %}" class="btn btn-secondary">Add Stock</a></h4>
+
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+</html>

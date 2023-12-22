@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container-fluid mt-4 mb-5">
+    <h5 class="text-center">Customer Name:{{user}}</h5>
+
+    <div class="row">
+        <h5 class="text-center">Order Details</h5>
+       {% for i in o %}
+        <div class="col-sm-6">
+            <div class="card" style="width: 20rem;margin-left:210px;">
+                <img src="{{i.product.image.url}}"height="280px"width="380px">
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card" style="width:30rem;">
+                <div class="card-body mt-2 mb-3">
+                    <b>
+                    <p class="card-text">Order Address:{{i.address}}</p>
+                    <p class="card-text">Customer Phone:{{i.phone}}</p>
+                    <p class="card-text">Product Name:{{i.product.name}}</p>
+                    <p class="card-text">Product Price:{{i.product.price}}</p>
+                    <p class="card-text">Ordered_On:{{i.date_ordered}}</p>
+                    <p class="card-text">Delivery Status:<span class="text-danger">{{i.delivery_status}}</span></p>
+                    </b>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container-fluid mt-5" style="margin-top:100px;">
+    <center>
+        <h3 class="text-center text-info">{{m}}</h3>
+        <h5 class="text-center text-success">Thank You...</h5>
+        <h6><a href="{% url 'shop:allcat' %}">Continue Shopping</a></h6>
+    </center>
+</div>
+
+{% endblock %}
